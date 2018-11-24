@@ -6,19 +6,42 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
+
 <html>
 <head>
     <title>Insert title here</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/main.css">
 </head>
 <body>
-    <form method="post" action="${pageContext.request.contextPath}/doCreate">
+    <sf:form method="post" action="${pageContext.request.contextPath}/doCreate" modelAttribute="offer">
         <table class="formTable">
-            <tr><td class="label">Name: </td> <td> <input class="control" type="text" name="name"/></td> </tr>
-            <tr><td class="label">Email: </td> <td> <input class="control" type="text" name="email"></td> </tr>
-            <tr><td class="label">Text: </td> <td> <textarea class="control" name="text" rows="10" cols="10"> </textarea> </td> </tr>
+            <tr>
+                <td class="label">Name: </td>
+                <td>
+                    <sf:input class="control" type="text" path="name"/>
+                    <br/>
+                    <sf:errors class="error" path="name"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">Email: </td>
+                <td>
+                    <sf:input class="control" type="text" path="email"/>
+                    <br/>
+                    <sf:errors class="error" path="email"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">Text: </td>
+                <td>
+                    <sf:textarea class="control" path="text" rows="10" cols="10"/>
+                    <br/>
+                    <sf:errors class="error" path="text"/>
+                </td>
+            </tr>
             <tr><td class="label"> </td> <td> <input class="control" type="submit" value="새 제안"/> </td> </tr>
         </table>
-    </form>
+    </sf:form>
 </body>
 </html>
