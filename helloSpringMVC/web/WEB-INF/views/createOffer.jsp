@@ -14,10 +14,10 @@
 <body>
     <form method="post" action="${pageContext.request.contextPath}/doCreate">
         <table class="formTable">
-            <tr><td>Name: </td> <td> <input type="text" name="name"/></td> </tr>
-            <tr><td>Email: </td> <td> <input type="text" name="name"></td> </tr>
-            <tr><td>Text: </td> <td> <textarea name="name" rows="10" cols="10"> </textarea> </td> </tr>
-            <tr><td> </td> <td> <input type="submit" value="새 제안"/> </td> </tr>
+            <tr><td class="label">Name: </td> <td> <input class="control" type="text" name="name"/></td> </tr>
+            <tr><td class="label">Email: </td> <td> <input class="control" type="text" name="email"></td> </tr>
+            <tr><td class="label">Text: </td> <td> <textarea class="control" name="text" rows="10" cols="10"> </textarea> </td> </tr>
+            <tr><td class="label"> </td> <td> <input class="control" type="submit" value="새 제안"/> </td> </tr>
         </table>
     </form>
 </body>

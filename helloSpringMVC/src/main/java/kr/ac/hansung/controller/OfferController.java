@@ -32,4 +32,10 @@ public class OfferController {
 
         return "createOffer";
     }
+
+    @RequestMapping("/doCreate")
+    public String doCreate(Model model, Offer offer) {
+        offerService.insert(offer);
+        return "offerCreated";
+    }
 }
