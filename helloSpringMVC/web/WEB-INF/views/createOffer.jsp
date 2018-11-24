@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>Insert title here</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/main.css">
 </head>
 <body>
     <form method="post" action="${pageContext.request.contextPath}/doCreate">
