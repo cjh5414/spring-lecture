@@ -13,5 +13,6 @@
 <body>
     <h1>Hello world!</h1>
     <p> <a href="${pageContext.request.contextPath}/offers"> Show current Offers </a> </p>
+    <p> <a href="${pageContext.request.contextPath}/createOffer"> Add a new offer </a> </p>
 </body>
 </html>
