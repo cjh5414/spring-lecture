@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,13 +19,15 @@
 
     <!-- Custom styles for this template -->
     <link href="<c:url value="/static/css/carousel.css"/>" rel="stylesheet">
+
+    <link href="<c:url value="/static/css/main.css"/>" rel="stylesheet">
+
 </head>
 <!-- NAVBAR
 ================================================== -->
 <body>
 <div class="navbar-wrapper">
     <div class="container">
-
         <nav class="navbar navbar-inverse navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
@@ -40,8 +42,8 @@
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#about">About</a></li>
+                        <li><a href="<c:url value="/"/>">Home</a></li>
+                        <li><a href="<c:url value="/products"/>">products</a></li>
                         <li><a href="#contact">Contact</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
