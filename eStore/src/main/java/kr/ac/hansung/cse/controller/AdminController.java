@@ -5,6 +5,7 @@ import kr.ac.hansung.cse.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -50,6 +51,30 @@ public class AdminController {
     public String addProductPost(Product product) {
         if (!productService.addProduct(product)) {
             System.out.println("Adding product cannot be done");
+        }
+
+        return "redirect:/admin/productInventory";
+    }
+
+    @RequestMapping("/productInventory/deleteProduct/{id}")
+    public String deleteProduct(@PathVariable int id) {
+        productService.deleteProductById(id);
+
+        return "redirect:/admin/productInventory";
+    }
+
+    @RequestMapping("/productInventory/editProduct/{id}")
+    public String editProduct(@PathVariable int id, Model model) {
+        Product product = productService.getProductById(id);
+        model.addAttribute("product", product);
+
+        return "editProduct";
+    }
+
+    @RequestMapping(value = "/productInventory/editProduct/{id}", method = RequestMethod.POST)
+    public String editProductPost(@PathVariable int id, Product product) {
+        if (!productService.editProduct(id, product)) {
+            System.out.println("Editing product cannot be done");
         }
 
         return "redirect:/admin/productInventory";

@@ -56,4 +56,42 @@ public class ProductDao {
         String sqlStatement = "insert into product (name, category, price, manufacturer, unitInStock, description) values (?,?,?,?,?,?)";
         return (jdbcTemplate.update(sqlStatement, new Object[]{name, category, price, manufacturer, unitIntStock, description}) == 1);
     }
+
+    public boolean deleteProductById(int id) {
+        String sqlStatement = "delete from product where id = (?)";
+        return (jdbcTemplate.update(sqlStatement, new Object[]{id}) == 1);
+    }
+
+    public Product getproductById(int id) {
+        String sqlStatement = "select * from product where id = (?)";
+
+        return jdbcTemplate.queryForObject(sqlStatement, new Object[]{id}, new RowMapper<Product>() {
+            @Override
+            public Product mapRow(ResultSet rs, int i) throws SQLException {
+                Product product = new Product();
+
+                product.setId(rs.getInt("id"));
+                product.setName(rs.getString("name"));
+                product.setCategory(rs.getString("category"));
+                product.setPrice(rs.getInt("price"));
+                product.setManufacturer(rs.getString("manufacturer"));
+                product.setUnitInStock(rs.getInt("unitInStock"));
+                product.setDescription(rs.getString("description"));
+
+                return product;
+            }
+        });
+    }
+
+    public boolean editProduct(int id, Product product) {
+        String name = product.getName();
+        String category = product.getCategory();
+        int price = product.getPrice();
+        String manufacturer = product.getManufacturer();
+        int unitIntStock = product.getUnitInStock();
+        String description = product.getDescription();
+
+        String sqlStatement = "update product set name=?, category=?, price=?, manufacturer=?, unitInStock=?, description=? where id = ?";
+        return (jdbcTemplate.update(sqlStatement, new Object[]{name, category, price, manufacturer, unitIntStock, description, id}) == 1);
+    }
 }
