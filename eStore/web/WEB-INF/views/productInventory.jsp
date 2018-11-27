@@ -4,7 +4,7 @@
 <div class="contain-wrapper">
     <div class="container">
         <h2>All Products</h2>
-        <p class="lead">착한 가격에 모든 상품을 살펴보세요</p>
+        <p class="lead">제품 재고 현황입니다.</p>
         <table class="table table-striped">
             <thead>
             <tr class="bg-success">
@@ -29,5 +29,8 @@
             </c:forEach>
             </tbody>
         </table>
+
+        <a href="<c:url value="/admin/productInventory/addProduct"/>"
+            class="btn btn-primary">Add Product</a>
     </div>
 </div>
