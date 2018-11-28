@@ -20,6 +20,7 @@
         <property name="hibernate.hbm2ddl.auto">create</property>
 
         <mapping class="testHibernate.Product" />
+        <mapping class="testHibernate.Category" />
 
     </session-factory>
 </hibernate-configuration>
