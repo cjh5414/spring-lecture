@@ -49,16 +49,14 @@ public class AdminController {
 
     @RequestMapping(value = "/productInventory/addProduct", method = RequestMethod.POST)
     public String addProductPost(Product product) {
-        if (!productService.addProduct(product)) {
-            System.out.println("Adding product cannot be done");
-        }
+        productService.addProduct(product);
 
         return "redirect:/admin/productInventory";
     }
 
     @RequestMapping("/productInventory/deleteProduct/{id}")
     public String deleteProduct(@PathVariable int id) {
-        productService.deleteProductById(id);
+        productService.deleteProductById(product);
 
         return "redirect:/admin/productInventory";
     }
