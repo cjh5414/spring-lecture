@@ -8,18 +8,19 @@
 
     <security:authentication-manager>
         <security:authentication-provider>
-            <security:user-service>
-                <security:user name="jihun" authorities="ROLE_USER" password="letmein" />
-            </security:user-service>
+            <security:jdbc-user-service data-source-ref="dataSource"
+                                        users-by-username-query="select username, password, enabled from users where username=?"
+                                        authorities-by-username-query="select username, authority from authorities where username=?" />
         </security:authentication-provider>
     </security:authentication-manager>
 
     <security:http auto-config="true" use-expressions="true">
         <security:intercept-url pattern="/" access="permitAll" />
         <security:intercept-url pattern="/offers" access="permitAll" />
+        <security:intercept-url pattern="/login" access="permitAll" />
         <security:intercept-url pattern="/createOffer" access="isAuthenticated()" />
         <security:intercept-url pattern="/static/**" access="permitAll" />
         <security:intercept-url pattern="/**" access="denyAll" />
+        <security:form-login login-page="/login" />
     </security:http>
-
 </beans>
