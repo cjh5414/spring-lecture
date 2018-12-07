@@ -5,10 +5,13 @@ import kr.ac.hansung.cse.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -48,7 +51,16 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/productInventory/addProduct", method = RequestMethod.POST)
-    public String addProductPost(Product product) {
+    public String addProductPost(@Valid Product product, BindingResult result) {
+        if (result.hasErrors()) {
+            System.out.println("===Form data has some errors===");
+            List<ObjectError> errors = result.getAllErrors();
+            for (ObjectError error: errors) {
+                System.out.println(error.getDefaultMessage());
+            }
+            return "addProduct";
+        }
+
         productService.addProduct(product);
 
         return "redirect:/admin/productInventory";
@@ -56,7 +68,7 @@ public class AdminController {
 
     @RequestMapping("/productInventory/deleteProduct/{id}")
     public String deleteProduct(@PathVariable int id) {
-        productService.deleteProductById(product);
+        productService.deleteProductById(id);
 
         return "redirect:/admin/productInventory";
     }
@@ -70,8 +82,19 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/productInventory/editProduct/{id}", method = RequestMethod.POST)
-    public String editProductPost(@PathVariable int id, Product product) {
-        if (!productService.editProduct(id, product)) {
+    public String editProductPost(@PathVariable int id, @Valid Product product, BindingResult result) {
+        if (result.hasErrors()) {
+            System.out.println("===Form data has some errors===");
+            List<ObjectError> errors = result.getAllErrors();
+            for (ObjectError error: errors) {
+                System.out.println(error.getDefaultMessage());
+            }
+            return "editProduct";
+        }
+
+        product.setId(id);
+
+        if (!productService.editProduct(product)) {
             System.out.println("Editing product cannot be done");
         }
 
