@@ -1,5 +1,6 @@
 package controller;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +13,7 @@ public class LoginController {
         if (error != null) {
             model.addAttribute("errorMsg", "Invalid username and password");
         }
-        
+
         return "login";
     }
 }

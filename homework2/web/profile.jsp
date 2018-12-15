@@ -11,6 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-    Profile
+    ${username} 님 환영합니다.
 </body>
 </html>
