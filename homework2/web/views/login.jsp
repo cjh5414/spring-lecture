@@ -36,5 +36,11 @@
             <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
         </table>
     </form>
+
+    <c:if test="${not empty logoutMsg}">
+        <div style="color: #0000FF;">
+            <h3> ${logoutMsg}</h3>
+        </div>
+    </c:if>
 </body>
 </html>

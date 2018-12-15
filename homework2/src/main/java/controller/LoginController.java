@@ -15,7 +15,6 @@ public class LoginController {
 
         if (logout != null) {
             model.addAttribute("logoutMsg", "You have been logged out successfully");
-            return "home";
         }
 
         return "login";
