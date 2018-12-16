@@ -16,12 +16,10 @@
     <link rel="stylesheet" href="<c:url value="/static/css/main.css"/>">
 </head>
 <body>
-    <%@ include file="nav.jsp"%>
+<%@ include file="nav.jsp" %>
 
-    <div class="container base">
-    <p>
-        <h2>2019년도 1학기 수강 신청 조회</h2>
-    </p>
+<div class="container base">
+    <h2>2019년도 1학기 수강 신청 조회</h2>
 
     <table class="table">
         <thead class="thead-dark">
@@ -43,7 +41,7 @@
         </c:forEach>
         </tbody>
     </table>
-    </div>
-    <script src="<c:url value="/static/js/bootstrap.min.js"/>"></script>
+</div>
+<script src="<c:url value="/static/js/bootstrap.min.js"/>"></script>
 </body>
 </html>

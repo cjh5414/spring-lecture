@@ -15,12 +15,10 @@
     <link rel="stylesheet" href="<c:url value="/static/css/main.css"/>">
 </head>
 <body>
+<%@ include file="nav.jsp" %>
 <div class="container base">
-    <%@ include file="nav.jsp"%>
+    <h2>이수 학점 조회</h2>
 
-    <p>
-        <h2>이수 학점 조회</h2>
-    </p>
     <table class="table">
         <thead>
         <tr>
@@ -46,6 +44,6 @@
         </tbody>
     </table>
 </div>
-    <script src="<c:url value="/static/js/bootstrap.min.js"/>"></script>
+<script src="<c:url value="/static/js/bootstrap.min.js"/>"></script>
 </body>
 </html>

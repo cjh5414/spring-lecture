@@ -14,6 +14,7 @@
     <title>로그인</title>
 
     <link rel="stylesheet" href="<c:url value="/static/css/bootstrap.min.css"/>">
+    <link rel="stylesheet" href="<c:url value="/static/css/main.css"/>">
 </head>
 <body>
 <%@ include file="nav.jsp" %>
@@ -23,6 +24,11 @@
     <c:if test="${not empty logoutMsg}">
         <div class="alert alert-primary" role="alert">
                 ${logoutMsg}
+        </div>
+    </c:if>
+    <c:if test="${not empty errorMsg}">
+        <div class="alert alert-danger" role="alert">
+                ${errorMsg}
         </div>
     </c:if>
     <form action="<c:url value="/login"/>" method="POST">
@@ -37,11 +43,6 @@
         <button type="submit" class="btn btn-primary">로그인</button>
         <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
     </form>
-    <c:if test="${not empty errorMsg}">
-        <div class="alert alert-danger" role="alert">
-                ${errorMsg}
-        </div>
-    </c:if>
 </div>
 <script src="<c:url value="/static/js/bootstrap.min.js"/>"></script>
 </body>

@@ -4,11 +4,14 @@ import model.Course;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import service.CourseService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -23,10 +26,17 @@ public class RegisterController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String createCourse(@Valid Course course) {
-        if (!courseService.insert(course)) {
-            System.err.println("Error: Fail to insert Course data");
+    public String createCourse(@Valid Course course, BindingResult result) {
+        if (result.hasErrors()) {
+            List<ObjectError> errors = result.getAllErrors();
+            for (ObjectError error : errors)
+                System.err.println(error.getDefaultMessage());
+
+            return "register";
         }
+
+        if (!courseService.insert(course))
+            System.err.println("Error: Fail to insert Course data");
 
         return "redirect: registered_courses";
     }

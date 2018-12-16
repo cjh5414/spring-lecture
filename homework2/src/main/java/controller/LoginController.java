@@ -10,7 +10,7 @@ public class LoginController {
     @RequestMapping("/login")
     public String showLogin(@RequestParam(value="error", required=false) String error, @RequestParam(value="logout", required=false) String logout, Model model) {
         if (error != null) {
-            model.addAttribute("errorMsg", "아이디 혹은 비밀번호 잘 못 되었습니다.");
+            model.addAttribute("errorMsg", "아이디 혹은 비밀번호가 잘 못 되었습니다.");
         }
 
         if (logout != null) {

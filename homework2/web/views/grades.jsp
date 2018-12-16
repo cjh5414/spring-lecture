@@ -19,10 +19,8 @@
 <%@ include file="nav.jsp" %>
 
 <div class="container base">
-    <p>
-        <h2>학년/학기별 총 이수 학점 조회</h2>
-    </p>
-    <table class="table table-sm">
+    <h2>학년/학기별 총 이수 학점 조회</h2>
+    <table class="table">
         <thead>
         <tr>
             <th>년도</th>
@@ -42,8 +40,8 @@
         </c:forEach>
         </tbody>
     </table>
-    </div>
+</div>
 
-    <script src="<c:url value="/static/js/bootstrap.min.js"/>"></script>
+<script src="<c:url value="/static/js/bootstrap.min.js"/>"></script>
 </body>
 </html>
