@@ -11,24 +11,31 @@
 <html>
 <head>
     <title>Home</title>
+
+    <link rel="stylesheet" href="<c:url value="/static/css/bootstrap.min.css"/>">
+    <link rel="stylesheet" href="<c:url value="/static/css/main.css"/>">
 </head>
 <body>
-    <c:choose>
-        <c:when test="${pageContext.request.userPrincipal.name != null}">
-            <p><a href="<c:url value="/grades"/>">학기별 이수 학점 조회</a></p>
-            <p><a href="<c:url value="/register"/>">수강 신청</a></p>
-            <p><a href="<c:url value="/registered_courses"/>">수강 신청 조회</a></p>
 
-            <a href="javascript:document.getElementById('logout').submit()"}>logout</a>
-        </c:when>
-        <c:otherwise>
-            <p><a href="<c:url value="/login"/>">로그인</a></p>
-        </c:otherwise>
-    </c:choose>
+<%@ include file="nav.jsp"%>
 
+<div class="container base">
+    <div class="jumbotron">
+        <h1 class="display-4">한성대학교 학점 관리 시스템</h1>
+        <p class="lead">학년/학기별 이수한 총 학점을 조회할 수 있고 2019년도 1학기 수강신청 및 조회를 할 수 있습니다.</p>
+        <hr class="my-4">
+        <c:choose>
+            <c:when test="${pageContext.request.userPrincipal.name == null}">
+                <p class="lead">사용하시려면 로그인을 해주세요.</p>
+                <a class="btn btn-primary" href="<c:url value="/login"/>" role="button">로그인</a>
+            </c:when>
+            <c:otherwise>
+                <p class="lead">${username} 님 환영합니다.</p>
+            </c:otherwise>
+        </c:choose>
+    </div>
+</div>
 
-    <form id="logout" action="<c:url value="/logout"/>" method="POST">
-        <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
-    </form>
+<script src="<c:url value="/static/js/bootstrap.min.js"/>"></script>
 </body>
 </html>

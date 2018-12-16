@@ -11,36 +11,38 @@
 
 <html>
 <head>
-    <title>Login page</title>
+    <title>로그인</title>
+
+    <link rel="stylesheet" href="<c:url value="/static/css/bootstrap.min.css"/>">
 </head>
 <body>
-    <h3>Custom Login Page</h3>
-    <form action="<c:url value="/login"/>" method="POST">
-        <c:if test="${not empty errorMsg}">
-            <div style="color: #FF0000;">
-                <h3> ${errorMsg}</h3>
-            </div>
-        </c:if>
-        <table>
-            <tr>
-                <td>User:</td>
-                <td><input type="text" name="username" value=""></td>
-            </tr>
-            <tr>
-                <td>Pssword:</td>
-                <td><input type="password" name="password" value=""></td>
-            </tr>
-            <tr>
-                <td colspan="2"><input name="submit" type="submit" value="Login"></td>
-            </tr>
-            <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
-        </table>
-    </form>
+<%@ include file="nav.jsp" %>
 
+<div class="container base">
+    <h3>Login</h3>
     <c:if test="${not empty logoutMsg}">
-        <div style="color: #0000FF;">
-            <h3> ${logoutMsg}</h3>
+        <div class="alert alert-primary" role="alert">
+                ${logoutMsg}
         </div>
     </c:if>
+    <form action="<c:url value="/login"/>" method="POST">
+        <div class="form-group">
+            <label for="id_username">ID</label>
+            <input type="text" class="form-control" id="id_username" name="username">
+        </div>
+        <div class="form-group">
+            <label for="id_password">Password</label>
+            <input type="password" class="form-control" id="id_password" name="password">
+        </div>
+        <button type="submit" class="btn btn-primary">로그인</button>
+        <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
+    </form>
+    <c:if test="${not empty errorMsg}">
+        <div class="alert alert-danger" role="alert">
+                ${errorMsg}
+        </div>
+    </c:if>
+</div>
+<script src="<c:url value="/static/js/bootstrap.min.js"/>"></script>
 </body>
 </html>

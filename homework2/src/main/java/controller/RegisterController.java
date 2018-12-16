@@ -23,7 +23,7 @@ public class RegisterController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String createCourse(Course course) {
+    public String createCourse(@Valid Course course) {
         if (!courseService.insert(course)) {
             System.err.println("Error: Fail to insert Course data");
         }

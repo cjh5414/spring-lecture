@@ -7,52 +7,52 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
 <head>
     <title>수강신청</title>
+
+    <link rel="stylesheet" href="<c:url value="/static/css/bootstrap.min.css"/>">
+    <link rel="stylesheet" href="<c:url value="/static/css/main.css"/>">
 </head>
 <body>
+<div class="container base">
+    <%@ include file="nav.jsp"%>
+
     <p>
         <h2>2019년도 1학기 수강신청</h2>
     </p>
 
     <sf:form method="post" action="${pageContext.request.contextPath}/register" modelAttribute="course">
-        <table>
-            <tr>
-                <td>과목명: </td>
-                <td>
-                    <sf:input class="control" type="text" path="name"/>
-                    <br/>
-                    <sf:errors class="error" path="name"/>
-                </td>
-            </tr>
-            <tr>
-                <td>과목 코드: </td>
-                <td>
-                    <sf:input class="control" type="text" path="code"/>
-                    <br/>
-                    <sf:errors class="error" path="code"/>
-                </td>
-            </tr>
-            <tr>
-                <td>구분: </td>
-                <td>
-                    <sf:input class="control" type="text" path="section"/>
-                    <br/>
-                    <sf:errors class="error" path="section"/>
-                </td>
-            </tr>
-            <tr>
-                <td>학점: </td>
-                <td>
-                    <sf:input class="control" type="number" path="credit"/>
-                    <br/>
-                    <sf:errors class="error" path="credit"/>
-                </td>
-            </tr>
-            <tr><td> </td> <td> <input class="control" type="submit" value="수강 신청"/> </td> </tr>
-        </table>
+        <div class="form-group">
+            <label for="id_title">과목명</label>
+            <sf:input type="text" class="form-control" id="id_title" path="name"/>
+            <br/>
+            <sf:errors class="error" path="name"/>
+        </div>
+        <div class="form-group">
+            <label for="id_code">과목 코드</label>
+            <sf:input type="text" class="form-control" id="id_code" path="code"/>
+            <br/>
+            <sf:errors class="error" path="code"/>
+        </div>
+        <div class="form-group">
+            <label for="id_section">과목 코드</label>
+            <sf:input type="text" class="form-control" id="id_section" path="section"/>
+            <br/>
+            <sf:errors class="error" path="section"/>
+        </div>
+        <div class="form-group">
+            <label for="id_credit">과목 코드</label>
+            <sf:input type="number" class="form-control" id="id_credit" path="credit"/>
+            <br/>
+            <sf:errors class="error" path="credit"/>
+        </div>
+        <button type="submit" class="btn btn-primary">수강 신청</button>
     </sf:form>
+</div>
+
+<script src="<c:url value="/static/js/bootstrap.min.js"/>"></script>
 </body>
 </html>

@@ -10,9 +10,19 @@
 <html>
 <head>
     <title>Registration</title>
+
+    <link rel="stylesheet" href="<c:url value="/static/css/bootstrap.min.css"/>">
+    <link rel="stylesheet" href="<c:url value="/static/css/main.css"/>">
 </head>
 <body>
-    <table>
+<div class="container base">
+    <%@ include file="nav.jsp"%>
+
+    <p>
+        <h2>이수 학점 조회</h2>
+    </p>
+    <table class="table">
+        <thead>
         <tr>
             <th>수강년도</th>
             <th>학기</th>
@@ -21,6 +31,8 @@
             <th>구분</th>
             <th>학점</th>
         </tr>
+        </thead>
+        <tbody>
         <c:forEach var="course" items="${courses}">
             <tr>
                 <td>${course.year}</td>
@@ -31,6 +43,9 @@
                 <td>${course.credit}</td>
             </tr>
         </c:forEach>
+        </tbody>
     </table>
+</div>
+    <script src="<c:url value="/static/js/bootstrap.min.js"/>"></script>
 </body>
 </html>
