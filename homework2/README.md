@@ -6,6 +6,8 @@
 - Mysql
 - Bootstrap 4
 
+<br/>
+
 ## 프로젝트 기능
 - 현재까지 수강한 총 이수 학점을 학년, 학기 별로 확인할 수 있다.
 - 특정 학년, 학기에 이수한 교과목 리스트를 확인할 수 있다.
@@ -14,6 +16,8 @@
 - 2019년도 1학기 수강신청 내역을 조회할 수 있다.
 - 로그인 로그아웃 할 수 있다.
 - Navbar의 메뉴를 통해 위의 기능들을 쉽게 이용할 수 있다.
+
+<br/>
 
 ## 프로젝트 구조
 ### controller
@@ -44,6 +48,8 @@
 ### WEB-INF
 web.xml, dispatcher-servlet.xml 등 Spring MVC를 위한 환경설정 파일들이 들어있다. jdbc, spring security, view resolver 등의 환경 설정이 되어있다.
 
+<br/>
+
 ## Database
 ### users
 | username | password | enabled |
@@ -67,17 +73,25 @@ web.xml, dispatcher-servlet.xml 등 Spring MVC를 위한 환경설정 파일들�
 | 1 | 2015 | 1 | GEN0032 | 사회봉사 | 일교 | 2 |
 | 1 | 2015 | 2 | COM0045 | 이산수학 | 전기 | 3 |
 
+
+<br/>
+
 ## 인증. Spring Security
 DB에 users, authorities table을 생성하여 사용자를 관리하고 인증 기능을 구현. 로그인 폼은 커스터마이징 하였고 로그인에 실패하면 실패 메세지를 보여주고 재시도 할 수 있게 구현하고 로그아웃 시에도 로그아웃 성공 메세지를 표시한다.
 
 인증 유무를 체크하여 메인 페이지를 보는 것 이외의 모든 기능은 인증 후에 사용 가능하다. 인증하지 않고 시도하면 로그인 페이지로 자동으로 이동한다.
 
+
+<br/>
+
 ## WebForm
 Hibernate Validation 이용하여 사용자 입력을 검증하고 잘 못된 경우 메세지로 표시해준다. controller에서 form data, error message 등의 데이터를 넘겨주면 spring tag form 및 jstl을 이용하여 페이지에 보여줄 수 있도록 구현되어 있다.
 
+<br/>
+
 ## URL Convention
 | 역할 | Method | URL |
-|:--------:|:--------:|:--------:|
+|:--------|:--------:|:--------|
 | 메인 | GET | / |
 | 로그인 페이지 보기 | GET | /login |
 | 로그인 | POST | /login |
