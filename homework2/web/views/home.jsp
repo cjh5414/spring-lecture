@@ -17,7 +17,7 @@
         <c:when test="${pageContext.request.userPrincipal.name != null}">
             <p><a href="<c:url value="/grades"/>">학기별 이수 학점 조회</a></p>
             <p><a href="<c:url value="/register"/>">수강 신청</a></p>
-            <p><a href="<c:url value="/registration"/>">수강 신청 조회</a></p>
+            <p><a href="<c:url value="/registered_courses"/>">수강 신청 조회</a></p>
 
             <a href="javascript:document.getElementById('logout').submit()"}>logout</a>
         </c:when>

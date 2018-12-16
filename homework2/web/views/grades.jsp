@@ -24,7 +24,7 @@
                 <td>${grade.year}</td>
                 <td>${grade.semester}</td>
                 <td>${grade.credit}</td>
-                <td><a href="/">링크</a></td>
+                <td><a href="<c:url value="/registration?year=${grade.year}&semester=${grade.semester}"/>">링크</a></td>
             </tr>
         </c:forEach>
     </table>

@@ -21,30 +21,33 @@ public class CourseDAO {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
+    public boolean insert(Course course) {
+        int year = 2019;
+        int semester = 1;
+        String code = course.getCode();
+        String name = course.getName();
+        String section = course.getSection();
+        int credit = course.getCredit();
+
+        String sqlStatement = "insert into courses (year, semester, code, name, section, credit) value (?, ?, ?, ?, ?, ?)";
+
+        return jdbcTemplate.update(sqlStatement, new Object[]{year, semester, code, name, section, credit}) == 1;
+    }
+
     public List<Course> getCourses() {
-        String sqlStatement = "select * from courses";
+        String sqlStatement = "select * from courses order by year, semester";
 
-        return jdbcTemplate.query(sqlStatement, new RowMapper<Course>() {
-            @Override
-            public Course mapRow(ResultSet rs, int rowNum) throws SQLException {
-                Course course = new Course();
+        return jdbcTemplate.query(sqlStatement, new CourseRowMapper());
+    }
 
-                course.setId(rs.getInt("id"));
-                course.setYear(rs.getInt("year"));
-                course.setSemester(rs.getInt("semester"));
-                course.setCredit(rs.getInt("credit"));
-                course.setName(rs.getString("name"));
-                course.setCode(rs.getString("code"));
-                course.setSection(rs.getString("section"));
+    public List<Course> getCourses(int year, int semester) {
+        String sqlStatement = "select * from courses where year=? and semester=?";
 
-                return course;
-            }
-
-        });
+        return jdbcTemplate.query(sqlStatement, new Object[]{year, semester},new CourseRowMapper());
     }
 
     public List<Grade> getGrades() {
-        String sqlStatement = "select year, semester, sum(credit) credit from courses group by year, semester";
+        String sqlStatement = "select year, semester, sum(credit) credit from courses group by year, semester order by year, semester";
 
         return jdbcTemplate.query(sqlStatement, new RowMapper<Grade>() {
             @Override
@@ -59,5 +62,28 @@ public class CourseDAO {
             }
 
         });
+    }
+
+    public List<Course> getRegisteredCourses() {
+        String sqlStatement = "select * from courses where year = 2019 and semester = 1";
+
+        return jdbcTemplate.query(sqlStatement, new CourseRowMapper());
+    }
+
+    private class CourseRowMapper implements RowMapper<Course> {
+        @Override
+        public Course mapRow(ResultSet rs, int rowNum) throws SQLException {
+            Course course = new Course();
+
+            course.setId(rs.getInt("id"));
+            course.setYear(rs.getInt("year"));
+            course.setSemester(rs.getInt("semester"));
+            course.setCredit(rs.getInt("credit"));
+            course.setName(rs.getString("name"));
+            course.setCode(rs.getString("code"));
+            course.setSection(rs.getString("section"));
+
+            return course;
+        }
     }
 }
